@@ -25,3 +25,74 @@ This data repository includes large-scale performance data on Alibaba Cloud, HUA
 * m5.large, m5.xlarge, m5.2xlarge
 * c5.large, c5.xlarge, c5.2xlarge
 * r5.large, r5.xlarge, r5.2xlarge
+
+## Features
+
+### Raw Features
+**[CPU features]** %user,%nice,%system,%iowait,%steal,%idle
+
+**[Disk Features]** tps,rd_sec/s,wr_sec/s,avgrq-sz,avgqu-sz,await,svctm,%util
+
+**[I/O Features]** tps,rtps,wtps,bread/s,bwrtn/s
+
+**[Load Features]** runq-sz,plist-sz,ldavg-1,ldavg-5,ldavg-15,blocked
+
+**[Memory Features]** kbmemfree,kbmemused,%memused,kbbuffers,kbcached,kbcommit,%commit,kbactive,kbinact,kbdirty
+
+**[Network Features]** IFACE,rxpck/s,txpck/s,rxkB/s,txkB/s,rxcmp/s,txcmp/s,rxmcst/s,%ifutil
+
+**[Paging Features]** pgpgin/s,pgpgout/s,fault/s,majflt/s,pgfree/s,pgscank/s,pgscand/s,pgsteal/s,%vmeff
+
+**[Swap Features]** pswpin/s,pswpout/sf,kbswpfree,kbswpused,%swpused,kbswpcad,%swpcad
+
+**[Task Features]** proc/s,cswch/s
+
+### Features with High Coefficient of Variation (CV)
+
+CV of All Raw Features:
+
+![](./raw_feat_cv.png)
+
+After Removing features with low CV, the following 28 features are left:
+
+**[CPU features]** %system,%iowait,%idle
+
+**[Disk Features]** tps,rd_sec/s,wr_sec/s,avgrq-sz,avgqu-sz,await,svctm,%util
+
+**[I/O Features]** tps,rtps,wtps,bread/s,bwrtn/s
+
+**[Load Features]** runq-sz,blocked
+
+**[Memory Features]** kbdirty
+
+**[Network Features]** rxpck/s,txpck/s,rxkB/s,txkB/s
+
+**[Paging Features]** pgpgin/s,pgpgout/s,fault/s,pgfree/s
+
+**[Task Features]** cswch/s
+
+### Features De-duplication
+
+Correlation Coefficient (COR) of 28 selected features:
+
+![](./raw_feat_cov.png)
+
+Correlation Coefficient (COR) of 13 selected features after de-duplication:
+
+![](./sel_feat_cov.png)
+
+After de-duplication (removing features with with correlation), the following 13 features are left:
+
+**[CPU features]** %system,%iowait,%idle
+
+**[Disk Features]** tps,rd_sec/s,await
+
+**[I/O Features]** bwrtn/s
+
+**[Load Features]** runq-sz,blocked
+
+**[Memory Features]** kbdirty
+
+**[Paging Features]** fault/s,pgfree/s
+
+**[Task Features]** cswch/s
