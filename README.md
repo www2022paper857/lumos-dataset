@@ -29,6 +29,9 @@ This data repository includes large-scale performance data on Alibaba Cloud, HUA
 ## Features
 
 ### Raw Features
+
+There are 62 raw features as follows:
+
 **[CPU features]** %user,%nice,%system,%iowait,%steal,%idle
 
 **[Disk Features]** tps,rd_sec/s,wr_sec/s,avgrq-sz,avgqu-sz,await,svctm,%util
@@ -81,7 +84,7 @@ Correlation Coefficient (COR) of 13 selected features after de-duplication:
 
 ![](./sel_feat_cov.png)
 
-After de-duplication (removing features with with correlation), the following 13 features are left:
+After de-duplication (removing features with high correlation), the following 13 features are left:
 
 **[CPU features]** %system,%iowait,%idle
 
